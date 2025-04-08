@@ -1,0 +1,30 @@
+name: Trigger Local Terraform
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  terraform-local:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Run Terraform Init
+        run: |
+          cd terraform
+          terraform init
+
+      - name: Run Terraform Plan
+        run: |
+          cd terraform
+          terraform plan
+
+      # Optional: apply
+      - name: Run Terraform Apply
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          cd terraform
+          terraform apply -auto-approve
