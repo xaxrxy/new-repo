@@ -6,6 +6,13 @@ on:
   workflow_dispatch:
 
 jobs:
+  print-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello World
+        run: echo "Hello, World!"
+
+        
   terraform-local:
     runs-on: self-hosted
     steps:
