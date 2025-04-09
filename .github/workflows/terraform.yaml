@@ -4,6 +4,11 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+    inputs:
+      message:
+        description: 'Message to print'
+        required: true
+        default: 'Hello, World!'
 
 jobs:
   print-hello:
