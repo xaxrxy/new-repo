@@ -9,10 +9,10 @@ jobs:
   print-hello:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Hello World
-        run: echo "Hello, World!"
+      - name: Print the input message
+        run: echo "${{ github.event.inputs.message }}"
 
-        
+
   terraform-local:
     runs-on: self-hosted
     steps:
