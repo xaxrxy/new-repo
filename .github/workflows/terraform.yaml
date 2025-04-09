@@ -5,10 +5,11 @@ on:
   #   branches: [ main ]
   workflow_dispatch:
     inputs:
-      message:
-        description: 'Message to print'
+      email:
+        description: 'Jira Email'
         required: true
-        default: 'Hello, World!'
+        default: 'irene.angreini@izeno.com'
+        type: string
 
 jobs:
   print-hello:
