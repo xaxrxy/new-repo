@@ -18,6 +18,16 @@ jobs:
       - name: Print the input message
         run: |
           echo "Username: ${{ github.event.inputs.username }}"
+          
+      - name: Use password safely (not printed)
+        env:
+          PASSWORD: ${{ secrets.USER_PASSWORD }}
+        run: |
+          echo "Using password internally, not printing it."
+          # Example internal use:
+          curl -u "${{ github.event.inputs.username }}:$PASSWORD" https://example.com/api
+  
+  
 
 
   terraform-local:
