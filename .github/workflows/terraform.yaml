@@ -5,7 +5,7 @@ on:
   #   branches: [ main ]
   workflow_dispatch:
     inputs:
-      email:
+      message:
         description: 'Jira Email'
         required: true
         default: 'irene.angreini@izeno.com'
