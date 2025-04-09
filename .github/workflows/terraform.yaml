@@ -18,10 +18,10 @@ jobs:
       - name: Print the input message
         run: |
           echo "Username: ${{ github.event.inputs.username }}"
-          
+
       - name: Use password safely (not printed)
         env:
-          PASSWORD: ${{ secrets.USER_PASSWORD }}
+          PASSWORD: ${{ secrets.USER_TOKEN }}
         run: |
           echo "Using password internally, not printing it."
           # Example internal use:
