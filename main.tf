@@ -1,7 +1,3 @@
-provider "null" {}
-
-resource "null_resource" "example" {}
-
-output "test_output" {
-  value = "Plan executed successfully!"
+output "hello_world" {
+  value = "Hello, Ary"
 }
