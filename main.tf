@@ -40,3 +40,5 @@ data "external" "git_commit" {
 output "current_commit_message" {
   value = data.external.git_commit.result.message
 }
+
+
