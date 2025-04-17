@@ -7,11 +7,19 @@ terraform {
   }
 }
 
+variable "commit_message" {
+  type = string
+}
+
+output "git_commit_message" {
+  value = var.commit_message
+}
+
 provider "http" {}
 
 resource "local_file" "example" {
   filename = "hello_terraform.txt"
-  content  = "This file was created by Terraform!"
+  content  = "This file was created by Terraform!!"
 }
 
 resource "null_resource" "jira_post_request" {
