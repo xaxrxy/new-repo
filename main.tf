@@ -7,14 +7,6 @@ terraform {
   }
 }
 
-variable "commit_message" {
-  type = string
-}
-
-output "git_commit_message" {
-  value = var.commit_message
-}
-
 provider "http" {}
 
 resource "local_file" "example" {
