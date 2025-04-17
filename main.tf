@@ -27,7 +27,12 @@ resource "null_resource" "jira_post_request" {
 
 data "external" "git_commit" {
   program = ["bash", "-c", <<EOT
-    echo "{\"message\": \"$(git log -1 --pretty=%B | tr -d '\n' | sed 's/\"/\\"/g')\"}"
+    COMMIT_MSG=$(git log -1 --pretty=%B 2>/dev/null | tr -d '\n' | sed 's/\"/\\"/g')
+    if [ -z "$COMMIT_MSG" ]; then
+      echo "{\"message\": \"No commit found\"}"
+    else
+      echo "{\"message\": \"$COMMIT_MSG\"}"
+    fi
   EOT
   ]
 }
