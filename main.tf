@@ -32,3 +32,14 @@ resource "null_resource" "jira_post_request" {
     EOT
   }
 }
+
+data "external" "git_commit" {
+  program = ["bash", "-c", <<EOT
+    echo "{\"message\": \"$(git log -1 --pretty=%B | tr -d '\n' | sed 's/\"/\\"/g')\"}"
+  EOT
+  ]
+}
+
+output "current_commit_message" {
+  value = data.external.git_commit.result.message
+}
