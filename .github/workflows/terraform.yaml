@@ -15,6 +15,14 @@ jobs:
   print-hello:
     runs-on: ubuntu-latest
     steps:
+      - name: Get commit message
+        run: echo "TF_COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+
+      - name: Terraform Apply
+        env:
+            TF_VAR_commit_message: ${{ env.TF_COMMIT_MESSAGE }}
+        run: terraform apply -auto-approve
+        
       - name: Print the input message
         run: |
           echo "Username: ${{ github.event.inputs.username }}"
