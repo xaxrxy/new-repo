@@ -7,6 +7,11 @@ terraform {
   }
 }
 
+variable "username" {
+  description = "The GitHub Actions username"
+  type        = string
+}
+
 output "hello_message" {
   value = "Hello World ${var.username}"
 }
