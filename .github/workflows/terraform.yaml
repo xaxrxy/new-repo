@@ -51,9 +51,9 @@ jobs:
     steps:
       - name: Check whoami
         run: whoami
-        
+
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           clean: false
           persist-credentials: false
