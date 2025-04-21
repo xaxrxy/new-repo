@@ -7,13 +7,8 @@ terraform {
   }
 }
 
-variable "username" {
-  description = "The username to greet"
-  type        = string
-}
-
 output "hello_message" {
-  value = "Hello World ${var.username}"
+  value = "Hello World"
 }
 
 provider "http" {}
