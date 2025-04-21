@@ -47,8 +47,8 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      # - name: Checkout repo
-      #   uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions\checkout@v3
       #   with:
       #     clean: false
       #     persist-credentials: false
@@ -61,7 +61,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan -var="username=${{ github.event.inputs.username }}"
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -var="username=${{ github.event.inputs.username }}"
