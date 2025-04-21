@@ -8,7 +8,7 @@ terraform {
 }
 
 output "hello_message" {
-  value = "Hello World!!!"
+  value = "Hello World ${var.username}"
 }
 
 provider "http" {}
