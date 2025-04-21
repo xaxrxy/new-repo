@@ -1,3 +1,8 @@
+variable "username" {
+  description = "The username passed from the command line or GitHub Actions"
+  type        = string
+}
+
 terraform {
   required_providers {
     http = {
