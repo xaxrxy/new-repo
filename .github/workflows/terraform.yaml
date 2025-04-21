@@ -50,15 +50,15 @@ jobs:
       # TF_CLOUD_TOKEN: ${{ secrets.TF_API_TOKEN }}
       TF_VAR_jira_token: ${{ secrets.JIRA_TOKEN }}
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-        with:
-          clean: false
-          persist-credentials: false
+      # - name: Checkout repo
+      #   uses: actions/checkout@v3
+      #   with:
+      #     clean: false
+      #     persist-credentials: false
       
-      - name: Sleep 10 seconds
-        run: Start-Sleep -Seconds 10
-        shell: pwsh
+      # - name: Sleep 10 seconds
+      #   run: Start-Sleep -Seconds 10
+      #   shell: pwsh
 
       - name: Terraform Init
         run: terraform init
