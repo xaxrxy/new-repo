@@ -7,7 +7,13 @@ terraform {
   }
 }
 
-output "hello_message2" {
+variable "username" {
+  description = "The GitHub Actions username"
+  type        = string
+  default     = "anonymous"
+}
+
+output "hello_message" {
   value = "Hello World ${var.username}"
 }
 
