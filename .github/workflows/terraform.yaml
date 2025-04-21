@@ -49,9 +49,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      #   with:
-      #     clean: false
-      #     persist-credentials: false
+        with:
+          clean: false
+          persist-credentials: false
       
       # - name: Sleep 10 seconds
       #   run: Start-Sleep -Seconds 10
