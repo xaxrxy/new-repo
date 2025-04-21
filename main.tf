@@ -9,15 +9,6 @@ terraform {
 
 provider "http" {}
 
-output "hello_message" {
-  value = "Hello World!!"
-}
-
-variable "username" {
-  description = "The username passed from GitHub Actions or CLI"
-  type        = string
-}
-
 resource "null_resource" "jira_post_request_2" {
   triggers = {
     always_run = timestamp()
