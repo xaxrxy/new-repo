@@ -6,10 +6,12 @@ on:
   workflow_dispatch:
     inputs:
       username:
-        description: 'Username'
+        description: 'abcd'
         required: true
         default: 'admin'
         type: string
+env:
+  TF_JIRA_USERNAME: "${{ github.event.inputs.username }}"
 
 jobs:
   print-inputs:
