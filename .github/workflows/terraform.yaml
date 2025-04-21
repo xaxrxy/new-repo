@@ -49,6 +49,9 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Check whoami
+        run: whoami
+        
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
