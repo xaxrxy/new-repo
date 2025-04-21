@@ -12,6 +12,14 @@ on:
         type: string
 
 jobs:
+  print-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print input values
+        run: |
+          echo "Environment: ${{ github.event.inputs.username }}"
+          echo "Message: ${{ github.event.inputs.username }}"
+
   print-hello:
     runs-on: ubuntu-latest
     steps:
