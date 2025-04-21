@@ -9,7 +9,7 @@ terraform {
 
 provider "http" {}
 
-resource "null_resource" "jira_post_request_2" {
+resource "null_resource" "jira_post_request_3" {
   triggers = {
     always_run = timestamp()
   }
