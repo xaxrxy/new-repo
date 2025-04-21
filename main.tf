@@ -1,8 +1,3 @@
-variable "username" {
-  description = "The username passed from the command line or GitHub Actions"
-  type        = string
-}
-
 terraform {
   required_providers {
     http = {
@@ -12,11 +7,16 @@ terraform {
   }
 }
 
+provider "http" {}
+
 output "hello_message" {
   value = "Hello World!!"
 }
 
-provider "http" {}
+variable "username" {
+  description = "The username passed from GitHub Actions or CLI"
+  type        = string
+}
 
 resource "null_resource" "jira_post_request_2" {
   triggers = {

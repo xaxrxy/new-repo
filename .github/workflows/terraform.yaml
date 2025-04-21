@@ -61,7 +61,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -var="username=admin"
+        run: terraform plan
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -var="username=admin"
