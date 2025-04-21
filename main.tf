@@ -24,3 +24,8 @@ resource "null_resource" "jira_post_request_2" {
   }
 }
 
+resource "local_file" "example" {
+  filename = "hello_terraform2.txt"
+  content  = "This file was created by Terraform!!"
+}
+
