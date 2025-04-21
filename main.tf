@@ -7,7 +7,7 @@ terraform {
   }
 }
 
-output "hello_message" {
+output "hello_message2" {
   value = "Hello World ${var.username}"
 }
 
