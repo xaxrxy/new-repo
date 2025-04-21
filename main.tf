@@ -13,11 +13,6 @@ output "hello_message" {
 
 provider "http" {}
 
-resource "local_file" "example" {
-  filename = "hello_terraform.txt"
-  content  = "This file was created by Terraform!!"
-}
-
 resource "null_resource" "jira_post_request" {
    provisioner "local-exec" {
      command = <<EOT
@@ -28,3 +23,9 @@ resource "null_resource" "jira_post_request" {
      EOT
    }
  }
+
+resource "local_file" "example" {
+  filename = "hello_terraform2.txt"
+  content  = "This file was created by Terraform!!"
+}
+

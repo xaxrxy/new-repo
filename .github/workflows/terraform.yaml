@@ -44,7 +44,7 @@ jobs:
           curl -u "${{ github.event.inputs.username }}:$PASSWORD" https://example.com/api
 
   terraform-local:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout repo
