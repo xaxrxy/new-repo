@@ -13,7 +13,7 @@ output "hello_message" {
 
 provider "http" {}
 
-resource "resource" "jira_post_request" {
+resource "null_resource" "jira_post_request_2" {
    provisioner "local-exec" {
      command = <<EOT
        curl -X POST https://izeno-devops-0325.atlassian.net/rest/api/2/issue/MSD-2/transitions \
