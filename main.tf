@@ -7,6 +7,15 @@ terraform {
   }
 }
 
+variable "username" {
+  description = "The username to greet"
+  type        = string
+}
+
+output "hello_message" {
+  value = "Hello World ${var.username}"
+}
+
 provider "http" {}
 
 resource "local_file" "example" {
