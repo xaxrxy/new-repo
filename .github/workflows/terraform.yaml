@@ -5,18 +5,19 @@ on:
   #   branches: [ main ]
   workflow_dispatch:
     # inputs:
-    #   issue_key:
-    #     description: "Enter the Jira issue key (e.g. MSD-123)"
-    #     required: true
-    #     default: "MSD-123"
     inputs:
+      issue_key:
+        description: "Enter the Jira issue key (e.g. MSD-123)"
+        required: true
       username:
         description: 'abcd'
         required: true
         default: 'admin'
         type: string
+      
 env:
   TF_JIRA_USERNAME: "${{ github.event.inputs.username }}"
+  TF_JIRA TOKEN: "YXJ5LnN1d2FuZGlAaXplbm8uY29tOkFUQVRUM3hGZkdGMDY2YUpTVW4tcVk1OFJJLWhZSUVuejk2a2I1X1pueXhpbmc2QXFDOG5qOUFaV1RQY0ZZUTJYOXBPdE93U0sxWktRVXlaTGFZdHFGTDVFSFNqZVZTdndmcWtTRjZxak5YS3cxVXhyN25Say03Qzl5MWJUVW5WYjF0VHdPUzlBb2M2akJ3ZzBZb18tS3Vfa3ZSZFJBY21uTnBRRUljOEI2YTRhaWxxaUJuT19BVT0yRThCQjY3OA=="
 
 jobs:
   print-inputs:
@@ -45,28 +46,28 @@ jobs:
       #     -d '{"transition": {"id": 21}}'
       
 
-  print-hello:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get commit message
-        run: echo "TF_COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+  # print-hello:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Get commit message
+  #       run: echo "TF_COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
 
-      - name: Terraform Apply
-        env:
-            TF_VAR_commit_message: ${{ env.TF_COMMIT_MESSAGE }}
-        run: terraform apply -auto-approve
+  #     - name: Terraform Apply
+  #       env:
+  #           TF_VAR_commit_message: ${{ env.TF_COMMIT_MESSAGE }}
+  #       run: terraform apply -auto-approve
         
-      - name: Print the input message
-        run: |
-          echo "Username: ${{ github.event.inputs.username }}"
+  #     - name: Print the input message
+  #       run: |
+  #         echo "Username: ${{ github.event.inputs.username }}"
 
-      - name: Use password safely (not printed)
-        env:
-          PASSWORD: ${{ secrets.USER_TOKEN }}
-        run: |
-          echo "Using password internally, not printing it."
-          # Example internal use:
-          curl -u "${{ github.event.inputs.username }}:$PASSWORD" https://example.com/api
+  #     - name: Use password safely (not printed)
+  #       env:
+  #         PASSWORD: ${{ secrets.USER_TOKEN }}
+  #       run: |
+  #         echo "Using password internally, not printing it."
+  #         # Example internal use:
+  #         curl -u "${{ github.event.inputs.username }}:$PASSWORD" https://example.com/api
 
   terraform-local:
     runs-on: self-hosted
@@ -92,7 +93,10 @@ jobs:
         run: terraform plan
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var="username=${{ github.event.inputs.username }}"
+        run: terraform apply -auto-approve \
+          -var="username=${{ github.event.inputs.username }}" \
+          -var="jira_token=${{ env.TF_JIRA_TOKEN }}" \
+          -var="jira_issuekey=${{ github.event.inputs.issuekey}}"
         # run: terraform apply -auto-approve
         # env:
         #   TF_VAR_username: ${{ github.event.inputs.username }}
