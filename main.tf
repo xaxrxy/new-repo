@@ -12,7 +12,7 @@ provider "http" {}
 variable "jira_token" {
   description = "Jira token from env"
   type        = string
-  sensitive   = true
+  sensitive   = false
   default     = ""
 }
 
