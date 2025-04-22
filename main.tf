@@ -12,7 +12,7 @@ provider "http" {}
 variable "jira_token" {
   description = "Jira token from env"
   type        = string
-  sensitive   = false
+  sensitive   = true
   default     = ""
 }
 
@@ -40,7 +40,7 @@ resource "null_resource" "jira_change_transitions" {
     command = <<EOT
       echo "Fetching transitions..."
       curl -X POST https://izeno-devops-0325.atlassian.net/rest/api/2/issue/MSD-2/transitions \
-        -H "Authorization: Basic YXJ5LnN1d2FuZGlAaXplbm8uY29tOkFUQVRUM3hGZkdGMDY2YUpTVW4tcVk1OFJJLWhZSUVuejk2a2I1X1pueXhpbmc2QXFDOG5qOUFaV1RQY0ZZUTJYOXBPdE93U0sxWktRVXlaTGFZdHFGTDVFSFNqZVZTdndmcWtTRjZxak5YS3cxVXhyN25Say03Qzl5MWJUVW5WYjF0VHdPUzlBb2M2akJ3ZzBZb18tS3Vfa3ZSZFJBY21uTnBRRUljOEI2YTRhaWxxaUJuT19BVT0yRThCQjY3OA==" \
+        -H "Authorization: Basic ${var.jira_token}" \
         -H "Content-Type: application/json" \
         -d '{"transition": {"id": 21}}'
     EOT
@@ -64,7 +64,4 @@ output "hello_message" {
   value = "Hello World ${var.username}"
 }
 
-output "hello_message2" {
-  value = "Hello World ${var.jira_token}"
-}
 
