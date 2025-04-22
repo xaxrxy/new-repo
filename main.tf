@@ -13,6 +13,7 @@ variable "jira_token" {
   description = "Jira token from env"
   type        = string
   sensitive   = true
+  default     = ""
 }
 
 resource "null_resource" "jira_get_transitions" {
