@@ -31,6 +31,12 @@ resource "local_file" "example" {
   content  = "This file was created by Terraform!!"
 }
 
+variable "username" {
+  description = "The username to greet"
+  type        = string
+  default     = "Ferdinand"
+}
+
 output "hello_message" {
   value = "Hello World ${var.username}"
 }
