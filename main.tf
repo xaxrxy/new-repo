@@ -31,6 +31,22 @@ resource "null_resource" "jira_get_transitions" {
   }
 }
 
+resource "null_resource" "jira_change_transitions" {
+  triggers = {
+    always_run = timestamp()
+  }
+
+  provisioner "local-exec" {
+    command = <<EOT
+      echo "Fetching transitions..."
+      curl -X POST https://izeno-devops-0325.atlassian.net/rest/api/2/issue/MSD-2/transitions \
+        -H "Authorization: Basicc ${var.jira_token}" \
+        -H "Content-Type: application/json" \
+        -d '{"transition": {"id": 21}}'
+    EOT
+  }
+}
+
 
 
 resource "local_file" "example" {
