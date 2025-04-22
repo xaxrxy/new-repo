@@ -93,7 +93,8 @@ jobs:
         run: terraform plan
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve \
+        run: |
+          terraform apply -auto-approve \
           -var="username=${{ github.event.inputs.username }}" \
           -var="jira_token=${{ env.TF_JIRA_TOKEN }}"
         # run: terraform apply -auto-approve
