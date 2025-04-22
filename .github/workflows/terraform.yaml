@@ -95,8 +95,7 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve \
           -var="username=${{ github.event.inputs.username }}" \
-          -var="jira_token=${{ env.TF_JIRA_TOKEN }}" \
-          -var="jira_issuekey=${{ github.event.inputs.issuekey}}"
+          -var="jira_token=${{ env.TF_JIRA_TOKEN }}"
         # run: terraform apply -auto-approve
         # env:
         #   TF_VAR_username: ${{ github.event.inputs.username }}
