@@ -92,7 +92,7 @@ jobs:
         run: terraform plan
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var="username=${{ github.event.inputs.username }}""
         # run: terraform apply -auto-approve
         # env:
         #   TF_VAR_username: ${{ github.event.inputs.username }}
