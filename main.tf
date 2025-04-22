@@ -64,7 +64,7 @@ output "hello_message" {
   value = "Hello World ${var.username}"
 }
 
-output "hello_message" {
+output "hello_message2" {
   value = "Hello World ${var.jira_token}"
 }
 
