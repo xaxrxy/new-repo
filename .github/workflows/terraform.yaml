@@ -4,6 +4,11 @@ on:
   # push:
   #   branches: [ main ]
   workflow_dispatch:
+    # inputs:
+    #   issue_key:
+    #     description: "Enter the Jira issue key (e.g. MSD-123)"
+    #     required: true
+    #     default: "MSD-123"
     inputs:
       username:
         description: 'abcd'
@@ -21,14 +26,24 @@ jobs:
         run: |
           echo "Environment: ${{ github.event.inputs.username }}"
           echo "Message: ${{ github.event.inputs.username }}"
-      - name: Transition Jira Issue
-        env:
-          JIRA_AUTH_HEADER: "YXJ5LnN1d2FuZGlAaXplbm8uY29tOkFUQVRUM3hGZkdGMDY2YUpTVW4tcVk1OFJJLWhZSUVuejk2a2I1X1pueXhpbmc2QXFDOG5qOUFaV1RQY0ZZUTJYOXBPdE93U0sxWktRVXlaTGFZdHFGTDVFSFNqZVZTdndmcWtTRjZxak5YS3cxVXhyN25Say03Qzl5MWJUVW5WYjF0VHdPUzlBb2M2akJ3ZzBZb18tS3Vfa3ZSZFJBY21uTnBRRUljOEI2YTRhaWxxaUJuT19BVT0yRThCQjY3OA=="
-        run: |
-          curl -X POST "https://izeno-devops-0325.atlassian.net/rest/api/2/issue/MSD-3/transitions" \
-          -H "Authorization: Basic $JIRA_AUTH_HEADER" \
-          -H "Content-Type: application/json" \
-          -d '{"transition": {"id": 21}}'
+      # - name: Transition Jira Issue
+      #   env:
+      #     JIRA_AUTH_HEADER: "${{ secrets.API_TOKEN }}"
+      #     JIRA_INSTANCE: "${{ secrets.JIRA_WEB }}"
+      #   run: |
+      #     curl -X POST "$JIRA_INSTANCE/rest/api/2/issue/${{ github.event.inputs.issuekey }}/transitions" \
+      #     -H "Authorization: Basic $JIRA_AUTH_HEADER" \
+      #     -H "Content-Type: application/json" \
+      #     -d '{"transition": {"id": 21}}'
+      # - name: Transition Jira Issue
+      #   env:
+      #     JIRA_AUTH_HEADER: "YXJ5LnN1d2FuZGlAaXplbm8uY29tOkFUQVRUM3hGZkdGMDY2YUpTVW4tcVk1OFJJLWhZSUVuejk2a2I1X1pueXhpbmc2QXFDOG5qOUFaV1RQY0ZZUTJYOXBPdE93U0sxWktRVXlaTGFZdHFGTDVFSFNqZVZTdndmcWtTRjZxak5YS3cxVXhyN25Say03Qzl5MWJUVW5WYjF0VHdPUzlBb2M2akJ3ZzBZb18tS3Vfa3ZSZFJBY21uTnBRRUljOEI2YTRhaWxxaUJuT19BVT0yRThCQjY3OA=="
+      #   run: |
+      #     curl -X POST "https://izeno-devops-0325.atlassian.net/rest/api/2/issue/MSD-3/transitions" \
+      #     -H "Authorization: Basic $JIRA_AUTH_HEADER" \
+      #     -H "Content-Type: application/json" \
+      #     -d '{"transition": {"id": 21}}'
+      
 
   print-hello:
     runs-on: ubuntu-latest
