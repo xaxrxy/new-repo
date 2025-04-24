@@ -16,6 +16,12 @@ variable "jira_token" {
   default     = ""
 }
 
+variable "TF_JIRA_TOKEN" {
+  description = "Token for Jira auth"
+  type        = string
+  sensitive   = true
+}
+
 
 locals {
   effective_jira_token = var.jira_token != "" ? var.jira_token : var.TF_JIRA_TOKEN
@@ -63,6 +69,11 @@ variable "username" {
   description = "The username to greet"
   type        = string
   default     = ""
+}
+
+variable "JIRA_ISSUE_KEY" {
+  description = "Issuekey for updating the issue"
+  type        = string
 }
 
 locals {
