@@ -82,7 +82,4 @@ output "hello_message" {
   value = "Hello World ${local.effective_jira_username}"
 }
 
-output "debug" {
-  value = "Running as ${var.JIRA_ISSUE_KEY} using Jira token length ${length(var.TF_JIRA_TOKEN)}"
-}
 
