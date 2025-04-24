@@ -1,23 +1,19 @@
 name: Trigger Local Terraform
 
 on:
-  # push:
-  #   branches: [ main ]
   workflow_dispatch:
-    # inputs:
     inputs:
       issue_key:
         description: "Enter the Jira issue key (e.g. MSD-123)"
         required: true
-      username:
-        description: 'abcd'
-        required: true
-        default: 'admin'
-        type: string
       
 env:
-  TF_JIRA_USERNAME: "${{ github.event.inputs.username }}"
-  TF_JIRA_TOKEN: "YXJ5LnN1d2FuZGlAaXplbm8uY29tOkFUQVRUM3hGZkdGMDY2YUpTVW4tcVk1OFJJLWhZSUVuejk2a2I1X1pueXhpbmc2QXFDOG5qOUFaV1RQY0ZZUTJYOXBPdE93U0sxWktRVXlaTGFZdHFGTDVFSFNqZVZTdndmcWtTRjZxak5YS3cxVXhyN25Say03Qzl5MWJUVW5WYjF0VHdPUzlBb2M2akJ3ZzBZb18tS3Vfa3ZSZFJBY21uTnBRRUljOEI2YTRhaWxxaUJuT19BVT0yRThCQjY3OA=="
+  TF_JIRA_TOKEN: "${{ secrets.JIRA_TOKEN }}"
+
+
+
+
+  # TF_JIRA_TOKEN: "YXJ5LnN1d2FuZGlAaXplbm8uY29tOkFUQVRUM3hGZkdGMDY2YUpTVW4tcVk1OFJJLWhZSUVuejk2a2I1X1pueXhpbmc2QXFDOG5qOUFaV1RQY0ZZUTJYOXBPdE93U0sxWktRVXlaTGFZdHFGTDVFSFNqZVZTdndmcWtTRjZxak5YS3cxVXhyN25Say03Qzl5MWJUVW5WYjF0VHdPUzlBb2M2akJ3ZzBZb18tS3Vfa3ZSZFJBY21uTnBRRUljOEI2YTRhaWxxaUJuT19BVT0yRThCQjY3OA=="
 
 jobs:
   print-inputs:
@@ -32,18 +28,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Check whoami
-        run: whoami
-
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
           clean: false
           persist-credentials: false
-      
-      # - name: Sleep 10 seconds
-      #   run: Start-Sleep -Seconds 10
-      #   shell: pwsh
 
       - name: Terraform Init
         run: terraform init
@@ -54,8 +43,9 @@ jobs:
       - name: Terraform Apply
         run: |
           terraform apply -auto-approve \
-          -var="username=${{ github.event.inputs.username }}" \
+          -var="jira_issuekey=${{ github.event.inputs.issuekey }}" \
           -var="jira_token=${{ env.TF_JIRA_TOKEN }}"
+
         # run: terraform apply -auto-approve
         # env:
         #   TF_VAR_username: ${{ github.event.inputs.username }}

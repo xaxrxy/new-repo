@@ -16,6 +16,11 @@ variable "jira_token" {
   default     = ""
 }
 
+
+locals {
+  effective_jira_token = var.jira_token != "" ? var.jira_token : var.TF_JIRA_TOKEN
+}
+
 resource "null_resource" "jira_get_transitions" {
   triggers = {
     always_run = timestamp()
@@ -25,7 +30,7 @@ resource "null_resource" "jira_get_transitions" {
     command = <<EOT
       echo "Fetching transitions..."
       curl -X GET https://izeno-devops-0325.atlassian.net/rest/api/3/issue/MSD-2/transitions \
-        -H "Authorization: Basic ${var.jira_token}" \
+        -H "Authorization: Basic ${local.effective_jira_token}" \
         -H "Content-Type: application/json"
     EOT
   }
@@ -57,11 +62,15 @@ resource "local_file" "example" {
 variable "username" {
   description = "The username to greet"
   type        = string
-  default     = "Ferdinand"
+  default     = ""
+}
+
+locals {
+  effective_jira_username = var.username != "" ? var.username : var.JIRA_ISSUE_KEY
 }
 
 output "hello_message" {
-  value = "Hello World ${var.username}"
+  value = "Hello World ${local.effective_jira_username}"
 }
 
 
