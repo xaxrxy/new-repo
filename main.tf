@@ -51,7 +51,7 @@ resource "null_resource" "jira_change_transitions" {
     command = <<EOT
       echo "Fetching transitions..."
       curl -X POST https://izeno-devops-0325.atlassian.net/rest/api/2/issue/MSD-2/transitions \
-        -H "Authorization: Basic ${local.effective_jira_token}" \
+        -H "Authorization: Basic ATATT3xFfGF066aJSUn-qY58RI-hYIEnz96kb5_Znyxing6AqC8nj9AZWTPcFYQ2X9pOtOwSK1ZKQUyZLaYtqFL5EHSjeVSvwfqkSF6qjNXKw1Uxr7nRk-7C9y1bTUnVb1tTwOS9Aoc6jBwg0Yo_-Ku_kvRdRAcmnNpQEIc8B6a4ailqiBnO_AU=2E8BB678" \
         -H "Content-Type: application/json" \
         -d '{"transition": {"id": 21}}'
     EOT
